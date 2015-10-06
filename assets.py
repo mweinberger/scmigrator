@@ -1,18 +1,16 @@
 import glob
 import connect
 
-__author__ = 'mweinberger'
-
 
 def get_assets_sc4(sc4):
 
     token = sc4['token']
     cookie = str(sc4['sessionID'])
     result = connect.sc4_connect('asset',
-                         'init',
-                         url=url,
-                         token=token,
-                         cookie=cookie)
+                                 'init',
+                                 url=url,
+                                 token=token,
+                                 cookie=cookie)
     if result is None:
             print "There are no SC4 Assets for this server instance"
             return None
@@ -37,22 +35,22 @@ def export_assets_sc4(sc4):
 
     token = sc4['token']
     cookie = str(sc4['sessionID'])
-    assets = sc4_connect('asset',
-                         'init',
-                         url=url,
-                         token=token,
-                         cookie=cookie)
+    assets = connect.sc4_connect('asset',
+                                 'init',
+                                 url=url,
+                                 token=token,
+                                 cookie=cookie)
     try:
         sc4Exportid = raw_input("\nPlease enter the ID of the asset you wish to export (type \"all\" to export all): ")
         if sc4Exportid == "all":
             for v in assets['assets']:
                 input = {'id': v['id']}
-                data = sc4_connect('asset',
-                                   'export',
-                                   input,
-                                   url=url,
-                                   token=token,
-                                   cookie=cookie)
+                data = connect.sc4_connect('asset',
+                                           'export',
+                                           input,
+                                           url=url,
+                                           token=token,
+                                           cookie=cookie)
                 with open(v['id']+".sc4.xml", 'w') as f:
                     f.write(data)
             return
@@ -60,12 +58,12 @@ def export_assets_sc4(sc4):
             for v in assets['assets']:
                 if v['id'] == sc4Exportid:
                     input = {'id': v['id']}
-                    data = sc4_connect('asset',
-                                       'export',
-                                       input,
-                                       url=url,
-                                       token=token,
-                                       cookie=cookie)
+                    data = connect.sc4_connect('asset',
+                                               'export',
+                                               input,
+                                               url=url,
+                                               token=token,
+                                               cookie=cookie)
                     with open(v['id']+".sc4.xml", 'w')as f:
                         f.write(data)
             return
@@ -110,17 +108,17 @@ def import_assets_sc4(sc4):
                 with open(v, 'rb') as in_file:
                     file_content = in_file.read()
                 content = connect.sc4_connect('file',
-                                      'upload',
-                                      url=url,
-                                      token=token,
-                                      cookie=cookie,
-                                      data=file_content)
+                                              'upload',
+                                              url=url,
+                                              token=token,
+                                              cookie=cookie,
+                                              data=file_content)
                 connect.sc4_connect('asset',
-                            'import',
-                            input={'filename': content},
-                            url=url,
-                            token=token,
-                            cookie=cookie)
+                                    'import',
+                                    input={'filename': content},
+                                    url=url,
+                                    token=token,
+                                    cookie=cookie)
             return
         else:
             file_name = sc4Import+'.xml'
@@ -128,18 +126,18 @@ def import_assets_sc4(sc4):
             with open(file_name, 'rb') as in_file:
                 file_content = in_file.read()
             content = connect.sc4_connect('file',
-                                  'upload',
-                                  url=url,
-                                  token=token,
-                                  cookie=cookie,
-                                  filename=file_name,
-                                  filecontent=file_content)
+                                          'upload',
+                                          url=url,
+                                          token=token,
+                                          cookie=cookie,
+                                          filename=file_name,
+                                          filecontent=file_content)
             connect.sc4_connect('asset',
-                        'import',
-                        input={'filename': content},
-                        url=url,
-                        token=token,
-                        cookie=cookie)
+                                'import',
+                                input={'filename': content},
+                                url=url,
+                                token=token,
+                                cookie=cookie)
         return
     except Exception, e:
         print "\nError: " + str(e)
@@ -148,7 +146,6 @@ def import_assets_sc4(sc4):
 
 def import_assets_sc5(sc5):
 
-    import glob
     sc5Import = raw_input("\nPlease enter the ID and version of the asset you wish to import, "
                           "type \"all\" to import all (Example: 1.sc4 or 2.sc5): ")
     print ""

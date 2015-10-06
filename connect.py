@@ -1,9 +1,10 @@
-__author__ = 'mweinberger'
+import securitycenter
+import requests
+import getpass
 
 
 def sc4_connect(module, action, input={}, url='', token='', cookie='', filename='', filecontent=''):
 
-    import requests
     requests.packages.urllib3.disable_warnings()
     data = {'module': module,
             'action': action,
@@ -39,7 +40,6 @@ def sc4_connect(module, action, input={}, url='', token='', cookie='', filename=
 
 def login_sc4():
 
-    import getpass
     try:
         scInstance = raw_input("\nPlease enter the IP of your SecurityCenter 4.x instance: ")
         sc4User = raw_input("Please enter the SecurityCenter 4.x username: ")
@@ -58,7 +58,6 @@ def login_sc4():
 
 def login_sc5():
 
-    import securitycenter
     try:
         scInstance = raw_input("\nPlease enter the IP of your Security Center instance: ")
         sc5 = securitycenter.SecurityCenter5(scInstance)
