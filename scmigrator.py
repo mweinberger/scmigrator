@@ -26,22 +26,25 @@ def sc4_menus(sc4):
 
     while True:
         switch = raw_input("\nAvailable SC4 Menu Options: \n1. Back to Main Menu \n"
-                           "------Assets------"
+                           "------Assets------ \n"
                            "  2. List Assets \n"
                            "  3. Export Assets \n"
                            "  4. Import Assets \n"
-                           "------Policies------"
+                           "------Policies------ \n"
                            "  5. List Policies \n"
                            "  6. Export Policies \n"
                            "  7. Import Policies \n"
-                           "------Reports------"
+                           "------Reports------ \n"
                            "  8. List Reports \n"
                            "  9. Export Reports \n"
                            "  10. Import Reports \n"
-                           "------Dashboards------"
+                           "------Dashboards------ \n"
                            "  11. List Dashboards \n"
                            "  12. Export Dashboards \n"
-                           "  13. Import Dashboards \n")
+                           "  13. Import Dashboards \n"
+                           "------Special------ \n"
+                           "  14. Export EVERYTHING \n"
+                           "  15. Import EVERYTHING \n")
         if switch == "1":
             return
         elif switch == "2":
@@ -68,6 +71,16 @@ def sc4_menus(sc4):
             dashboards.export_dashboards_sc4(sc4)
         elif switch == "13":
             dashboards.import_dashboards_sc4(sc4)
+        elif switch == "14":
+            assets.export_assets_sc4(sc4, all=True)
+            policies.export_policies_sc4(sc4, all=True)
+            reports.export_reports_sc4(sc4, all=True)
+            dashboards.export_dashboards_sc4(sc4, all=True)
+        elif switch == "15":
+            assets.import_assets_sc4(sc4, all=True)
+            policies.import_policies_sc4(sc4, all=True)
+            reports.import_reports_sc4(sc4, all=True)
+            dashboards.import_dashboards_sc4(sc4, all=True)
 
 
 def sc5_menus(sc5):
@@ -89,7 +102,10 @@ def sc5_menus(sc5):
                            "------Dashboards------"
                            "  11. List Dashboards \n"
                            "  12. Export Dashboards \n"
-                           "  13. Import Dashboards \n")
+                           "  13. Import Dashboards \n"
+                           "------Special------ \n"
+                           "  14. Export EVERYTHING \n"
+                           "  15. Import EVERYTHING \n")
         if switch == "1":
             return
         elif switch == "2":
@@ -115,6 +131,16 @@ def sc5_menus(sc5):
         elif switch == "12":
             dashboards.export_dashboards_sc5(sc5)
         elif switch == "13":
+            dashboards.import_dashboards_sc5(sc5)
+        elif switch == "14":
+            assets.export_assets_sc5(sc5)
+            policies.export_policies_sc5(sc5)
+            reports.export_reports_sc5(sc5)
+            dashboards.export_dashboards_sc5(sc5)
+        elif switch == "15":
+            assets.import_assets_sc5(sc5)
+            policies.import_policies_sc5(sc5)
+            reports.import_reports_sc5(sc5)
             dashboards.import_dashboards_sc5(sc5)
 
 
