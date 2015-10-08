@@ -1,6 +1,6 @@
-# Python Security Center Module
+# Python Security Center Migrator
 
-This module is designed to import and export assets from SecurityCenter 4.x and 5.x.
+This tool is designed to import and export assets, policies, reports, and dashboards between SecurityCenter 4.x and 5.x.
 More importantly, you can do these tasks in bulk.
 
 [Source Code Repository](https://github.com/mweinberger/scmigrator)
@@ -14,7 +14,10 @@ __v0.0.1__
 
 # How to Install
 
-This is blank for now.
+Download the package and then run:
+python scmigrator.py
+
+Requires pySecurityCenter 2.1.7 or greater.
 
 # Usage
 
