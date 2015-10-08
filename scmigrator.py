@@ -1,6 +1,7 @@
-__author__ = 'mweinberger'
 
 import connect
+import assets
+import policies
 
 def check_version():
 
@@ -21,8 +22,6 @@ def check_version():
 
 def sc4_menus(sc4):
 
-    import assets
-    import policies
     while True:
         switch = raw_input("\nAvaliable Menu Options: \n1. Back to Main Menu \n"
                            "2. List SC4 Assets \n"
@@ -39,9 +38,6 @@ def sc4_menus(sc4):
 
 
 def sc5_menus(sc5):
-
-    import assets
-    import policies
 
     while True:
         switch = raw_input("\nAvaliable Menu Options: \n1. Back to Main Menu \n"
