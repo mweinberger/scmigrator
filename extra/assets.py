@@ -103,6 +103,7 @@ def export_assets_sc5(sc5):
 
 
 def import_assets_sc4(sc4):
+
     if not os.path.exists('sc4/assets'):
         if not os.path.exists('sc5/assets'):
             print "There are no assets to import"
@@ -160,13 +161,18 @@ def import_assets_sc4(sc4):
 
 def import_assets_sc5(sc5):
 
+    if not os.path.exists('sc4/assets'):
+        if not os.path.exists('sc5/assets'):
+            print "There are no assets to import"
     sc5Import = raw_input("\nPlease enter the ID and version of the asset you wish to import, "
-                          "type \"all\" to import all (Example: 1.sc4 or 2.sc5): ")
+                          "type \"all\" to import all (Example: sc4/1 or sc5/2): ")
     print ""
+
     if sc5Import == "all":
-        assets = glob.glob("*.xml")
+        assets = glob.glob("sc4/assets/*.xml")
+        assets.append(glob.glob("sc5/assets/*.xml"))
         for v in assets:
-            print "Importing"+v
+            print "Importing "+v
             try:
                 with open(v, 'rb') as in_file:
                     file_content = in_file.read()
@@ -179,8 +185,9 @@ def import_assets_sc5(sc5):
         return
     else:
         try:
-            file_name = sc5Import+'.xml'
-            print "\nImporting"+file_name
+            sc5Import = sc5Import.split("\\")
+            file_name = sc5Import[0]+'/assets/'+sc5Import[1]+'.xml'
+            print "\nImporting "+file_name
             with open(file_name, 'rb') as in_file:
                 file_content = in_file.read()
             files = {'Filedata': (file_name, file_content)}
