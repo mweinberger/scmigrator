@@ -4,6 +4,7 @@
 
 import connect
 import glob
+import os
 
 
 def get_assets_sc4(sc4):
@@ -39,6 +40,8 @@ def export_assets_sc4(sc4):
 
     token = sc4['token']
     cookie = str(sc4['sessionID'])
+    if not os.path.exists('sc4/assets'):
+        os.makedirs('sc4/assets')
     assets = connect.sc4_connect('asset',
                                  'init',
                                  url=url,
@@ -55,7 +58,7 @@ def export_assets_sc4(sc4):
                                            url=url,
                                            token=token,
                                            cookie=cookie)
-                with open(v['id']+".sc4.xml", 'w') as f:
+                with open('sc4/assets/'+v['id']+".xml", 'w') as f:
                     f.write(data)
             return
         else:
@@ -68,7 +71,7 @@ def export_assets_sc4(sc4):
                                                url=url,
                                                token=token,
                                                cookie=cookie)
-                    with open(v['id']+".sc4.xml", 'w')as f:
+                    with open('sc4/assets/'+v['id']+".xml", 'w')as f:
                         f.write(data)
             return
     except Exception, e:
@@ -79,17 +82,19 @@ def export_assets_sc4(sc4):
 def export_assets_sc5(sc5):
 
     try:
+        if not os.path.exists('sc5/assets'):
+            os.makedirs('sc5/assets')
         sc5Exportid = raw_input("\nPlease enter the ID of the asset you wish to export (type \"all\" to export all): ")
         if sc5Exportid == "all":
             assets = sc5.get('/asset')
             for v in assets.json().get('response').get('manageable'):
                 sc5Export = sc5.get('asset/'+v.get('id')+'/export')
-                with open(v.get('id')+".sc5.xml", 'w') as f:
+                with open('sc5/assets/'+v.get('id')+".xml", 'w') as f:
                     f.write(sc5Export.content)
             return
         else:
             sc5Export = sc5.get('asset/'+sc5Exportid+'/export')
-            with open(sc5Exportid+".sc5.xml", 'w') as f:
+            with open('sc5/assets/'+sc5Exportid+".xml", 'w') as f:
                 f.write(sc5Export.content)
             return
     except Exception, e:
@@ -98,17 +103,20 @@ def export_assets_sc5(sc5):
 
 
 def import_assets_sc4(sc4):
-
+    if not os.path.exists('sc4/assets'):
+        if not os.path.exists('sc5/assets'):
+            print "There are no assets to import"
     token = sc4['token']
     cookie = str(sc4['sessionID'])
     sc4Import = raw_input("\nPlease enter the ID and version of the asset you wish to import, "
-                          "type \"all\" to import all (Example: 1.sc4 or 2.sc5): ")
+                          "type \"all\" to import all (Example: sc4/1 or sc5/2): ")
     print ""
     try:
         if sc4Import == "all":
-            assets = glob.glob("*.xml")
+            assets = glob.glob("sc4/assets/*.xml")
+            assets.append(glob.glob("sc5/assets/*.xml"))
             for v in assets:
-                print "Importing"+v
+                print "Importing "+v
                 with open(v, 'rb') as in_file:
                     file_content = in_file.read()
                 content = connect.sc4_connect('file',
@@ -116,7 +124,8 @@ def import_assets_sc4(sc4):
                                               url=url,
                                               token=token,
                                               cookie=cookie,
-                                              data=file_content)
+                                              filename=v,
+                                              filecontent=file_content)
                 connect.sc4_connect('asset',
                                     'import',
                                     input={'filename': content},
@@ -125,8 +134,9 @@ def import_assets_sc4(sc4):
                                     cookie=cookie)
             return
         else:
-            file_name = sc4Import+'.xml'
-            print "\nImporting"+file_name
+            sc4Import = sc4Import.split("\\")
+            file_name = sc4Import[0]+'/assets/'+sc4Import[1]+'.xml'
+            print "\nImporting "+file_name
             with open(file_name, 'rb') as in_file:
                 file_content = in_file.read()
             content = connect.sc4_connect('file',

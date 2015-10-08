@@ -6,7 +6,7 @@ import securitycenter
 import requests
 import getpass
 import json
-
+import os
 
 
 def sc4_connect(module, action, input={}, url='', token='', cookie='', filename='', filecontent=''):
@@ -47,6 +47,8 @@ def sc4_connect(module, action, input={}, url='', token='', cookie='', filename=
 def login_sc4():
 
     try:
+        if not os.path.exists('sc4'):
+            os.makedirs('sc4')
         scInstance = raw_input("\nPlease enter the IP of your SecurityCenter 4.x instance: ")
         sc4User = raw_input("Please enter the SecurityCenter 4.x username: ")
         sc4Pass = getpass.getpass("Please enter the SecurityCenter 4.x password: ")
@@ -65,6 +67,8 @@ def login_sc4():
 def login_sc5():
 
     try:
+        if not os.path.exists('sc5'):
+            os.makedirs('sc5')
         scInstance = raw_input("\nPlease enter the IP of your Security Center instance: ")
         sc5 = securitycenter.SecurityCenter5(scInstance)
     except Exception, e:
