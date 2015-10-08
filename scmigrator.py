@@ -2,11 +2,7 @@
 # -*- coding: utf-8 -*-
 # This script is Copyright (C) 2015 Tenable Network Security, Inc.
 
-import connect
-import assets
-import policies
-import reports
-import dashboards
+from extra import *
 
 
 def check_version():

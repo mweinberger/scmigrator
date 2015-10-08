@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # This script is Copyright (C) 2015 Tenable Network Security, Inc.
 
-import glob
 import connect
+import glob
 
 
 def get_assets_sc4(sc4):

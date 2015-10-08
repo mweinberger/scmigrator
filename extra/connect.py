@@ -8,6 +8,7 @@ import getpass
 import json
 
 
+
 def sc4_connect(module, action, input={}, url='', token='', cookie='', filename='', filecontent=''):
 
     requests.packages.urllib3.disable_warnings()

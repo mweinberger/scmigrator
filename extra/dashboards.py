@@ -3,7 +3,7 @@
 # This script is Copyright (C) 2015 Tenable Network Security, Inc.
 
 import connect
-
+import glob
 
 def get_dashboards_sc4(sc4):
     token = sc4['token']
