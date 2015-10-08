@@ -48,39 +48,39 @@ def sc4_menus(sc4):
         if switch == "1":
             return
         elif switch == "2":
-            assets.get_assets_sc4(sc4)
+            items.get_sc4(sc4, 'asset')
         elif switch == "3":
-            assets.export_assets_sc4(sc4)
+            items.export_sc4(sc4, 'asset')
         elif switch == "4":
-            assets.import_assets_sc4(sc4)
+            items.import_sc4(sc4, 'asset')
         elif switch == "5":
-            policies.get_policies_sc4(sc4)
+            items.get_scsc4(sc4, 'policy')
         elif switch == "6":
-            policies.export_policies_sc4(sc4)
+            items.export_sc4(sc4, 'policy')
         elif switch == "7":
-            policies.import_policies_sc4(sc4)
+            items.import_sc4(sc4, 'policy')
         elif switch == "8":
-            reports.get_reports_sc4(sc4)
+            items.get_sc4(sc4, 'report')
         elif switch == "9":
-            reports.export_reports_sc4(sc4)
+            items.export_sc4(sc4, 'report')
         elif switch == "10":
-            reports.import_reports_sc4(sc4)
+            items.import_sc4(sc4, 'report')
         elif switch == "11":
-            dashboards.get_dashboards_sc4(sc4)
+            items.get_sc4(sc4, 'dashboard')
         elif switch == "12":
-            dashboards.export_dashboards_sc4(sc4)
+            items.export_sc4(sc4, 'dashboard')
         elif switch == "13":
-            dashboards.import_dashboards_sc4(sc4)
+            items.import_sc4(sc4, 'dashboard')
         elif switch == "14":
-            assets.export_assets_sc4(sc4, all=True)
-            policies.export_policies_sc4(sc4, all=True)
-            reports.export_reports_sc4(sc4, all=True)
-            dashboards.export_dashboards_sc4(sc4, all=True)
+            items.export_sc4(sc4, 'asset', all=True)
+            items.export_sc4(sc4, 'policy', all=True)
+            items.export_sc4(sc4, 'report', all=True)
+            items.export_sc4(sc4, 'dashboard', all=True)
         elif switch == "15":
-            assets.import_assets_sc4(sc4, all=True)
-            policies.import_policies_sc4(sc4, all=True)
-            reports.import_reports_sc4(sc4, all=True)
-            dashboards.import_dashboards_sc4(sc4, all=True)
+            items.import_sc4(sc4, 'asset', all=True)
+            items.import_sc4(sc4, 'policy', all=True)
+            items.import_sc4(sc4, 'report', all=True)
+            items.import_sc4(sc4, 'dashboard', all=True)
 
 
 def sc5_menus(sc5):
@@ -109,39 +109,39 @@ def sc5_menus(sc5):
         if switch == "1":
             return
         elif switch == "2":
-            assets.get_assets_sc5(sc5)
+            items.get_sc5(sc5, 'asset')
         elif switch == "3":
-            assets.export_assets_sc5(sc5)
+            items.export_sc5(sc5, 'asset')
         elif switch == "4":
-            assets.import_assets_sc5(sc5)
+            items.import_sc5(sc5, 'asset')
         elif switch == "5":
-            policies.get_policies_sc5(sc5)
+            items.get_sc5(sc5, 'policy')
         elif switch == "6":
-            policies.export_policies_sc5(sc5)
+            items.export_sc5(sc5, 'policy')
         elif switch == "7":
-            policies.import_policies_sc5(sc5)
+            items.import_sc5(sc5, 'policy')
         elif switch == "8":
-            reports.get_reports_sc5(sc5)
+            items.get_sc5(sc5, 'report')
         elif switch == "9":
-            reports.export_reports_sc5(sc5)
+            items.export_sc5(sc5, 'report')
         elif switch == "10":
-            reports.import_reports_sc5(sc5)
+            items.import_sc5(sc5, 'report')
         elif switch == "11":
-            dashboards.get_dashboards_sc5(sc5)
+            items.get_sc5(sc5, 'dashboard')
         elif switch == "12":
-            dashboards.export_dashboards_sc5(sc5)
+            items.export_sc5(sc5, 'dashboard')
         elif switch == "13":
-            dashboards.import_dashboards_sc5(sc5)
+            items.import_sc5(sc5, 'dashboard')
         elif switch == "14":
-            assets.export_assets_sc5(sc5, all=True)
-            policies.export_policies_sc5(sc5, all=True)
-            reports.export_reports_sc5(sc5, all=True)
-            dashboards.export_dashboards_sc5(sc5, all=True)
+            items.export_sc5(sc5, 'asset', all=True)
+            items.export_sc5(sc5, 'policy', all=True)
+            items.export_sc5(sc5, 'report', all=True)
+            items.export_sc5(sc5, 'dashboard', all=True)
         elif switch == "15":
-            assets.import_assets_sc5(sc5, all=True)
-            policies.import_policies_sc5(sc5, all=True)
-            reports.import_reports_sc5(sc5, all=True)
-            dashboards.import_dashboards_sc5(sc5, all=True)
+            items.import_sc5(sc5, 'asset', all=True)
+            items.import_sc5(sc5, 'policy', all=True)
+            items.import_sc5(sc5, 'report', all=True)
+            items.import_sc5(sc5, 'dashboard', all=True)
 
 
 # ------------------------------------------------------------------------------
