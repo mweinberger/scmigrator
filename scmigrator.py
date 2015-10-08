@@ -133,15 +133,15 @@ def sc5_menus(sc5):
         elif switch == "13":
             dashboards.import_dashboards_sc5(sc5)
         elif switch == "14":
-            assets.export_assets_sc5(sc5)
-            policies.export_policies_sc5(sc5)
-            reports.export_reports_sc5(sc5)
-            dashboards.export_dashboards_sc5(sc5)
+            assets.export_assets_sc5(sc5, all=True)
+            policies.export_policies_sc5(sc5, all=True)
+            reports.export_reports_sc5(sc5, all=True)
+            dashboards.export_dashboards_sc5(sc5, all=True)
         elif switch == "15":
-            assets.import_assets_sc5(sc5)
-            policies.import_policies_sc5(sc5)
-            reports.import_reports_sc5(sc5)
-            dashboards.import_dashboards_sc5(sc5)
+            assets.import_assets_sc5(sc5, all=True)
+            policies.import_policies_sc5(sc5, all=True)
+            reports.import_reports_sc5(sc5, all=True)
+            dashboards.import_dashboards_sc5(sc5, all=True)
 
 
 # ------------------------------------------------------------------------------

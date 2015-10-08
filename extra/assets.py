@@ -8,6 +8,7 @@ import os
 
 
 def get_assets_sc4(sc4):
+
     try:
         url = sc4['url']
         token = sc4['token']
@@ -30,6 +31,7 @@ def get_assets_sc4(sc4):
 
 
 def get_assets_sc5(sc5):
+
     try:
         result = sc5.get('/asset')
         if result is None:
