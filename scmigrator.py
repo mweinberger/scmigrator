@@ -2,6 +2,9 @@
 import connect
 import assets
 import policies
+import reports
+import dashboards
+
 
 def check_version():
 
@@ -23,10 +26,23 @@ def check_version():
 def sc4_menus(sc4):
 
     while True:
-        switch = raw_input("\nAvaliable Menu Options: \n1. Back to Main Menu \n"
-                           "2. List SC4 Assets \n"
-                           "3. Export SC4 Assets \n"
-                           "4. Import Assets to SC4 \n")
+        switch = raw_input("\nAvailable SC4 Menu Options: \n1. Back to Main Menu \n"
+                           "------Assets------"
+                           "  2. List Assets \n"
+                           "  3. Export Assets \n"
+                           "  4. Import Assets \n"
+                           "------Policies------"
+                           "  5. List Policies \n"
+                           "  6. Export Policies \n"
+                           "  7. Import Policies \n"
+                           "------Reports------"
+                           "  8. List Reports \n"
+                           "  9. Export Reports \n"
+                           "  10. Import Reports \n"
+                           "------Dashboards------"
+                           "  11. List Dashboards \n"
+                           "  12. Export Dashboards \n"
+                           "  13. Import Dashboards \n")
         if switch == "1":
             return
         elif switch == "2":
@@ -35,15 +51,46 @@ def sc4_menus(sc4):
             assets.export_assets_sc4(sc4)
         elif switch == "4":
             assets.import_assets_sc4(sc4)
+        elif switch == "5":
+            policies.get_policies_sc4(sc4)
+        elif switch == "6":
+            policies.export_policies_sc4(sc4)
+        elif switch == "7":
+            policies.import_policies_sc4(sc4)
+        elif switch == "8":
+            reports.get_reports_sc4(sc4)
+        elif switch == "9":
+            reports.export_reports_sc4(sc4)
+        elif switch == "10":
+            reports.import_reports_sc4(sc4)
+        elif switch == "11":
+            dashboards.get_dashboards_sc4(sc4)
+        elif switch == "12":
+            dashboards.export_dashboards_sc4(sc4)
+        elif switch == "13":
+            dashboards.import_dashboards_sc4(sc4)
 
 
 def sc5_menus(sc5):
 
     while True:
-        switch = raw_input("\nAvaliable Menu Options: \n1. Back to Main Menu \n"
-                           "2. List SC5 Assets \n"
-                           "3. Export SC5 Assets \n"
-                           "4. Import Assets to SC5 \n")
+        switch = raw_input("\nAvailable SC5 Menu Options: \n1. Back to Main Menu \n"
+                           "------Assets------"
+                           "  2. List Assets \n"
+                           "  3. Export Assets \n"
+                           "  4. Import Assets \n"
+                           "------Policies------"
+                           "  5. List Policies \n"
+                           "  6. Export Policies \n"
+                           "  7. Import Policies \n"
+                           "------Reports------"
+                           "  8. List Reports \n"
+                           "  9. Export Reports \n"
+                           "  10. Import Reports \n"
+                           "------Dashboards------"
+                           "  11. List Dashboards \n"
+                           "  12. Export Dashboards \n"
+                           "  13. Import Dashboards \n")
         if switch == "1":
             return
         elif switch == "2":
@@ -52,6 +99,24 @@ def sc5_menus(sc5):
             assets.export_assets_sc5(sc5)
         elif switch == "4":
             assets.import_assets_sc5(sc5)
+        elif switch == "5":
+            policies.get_policies_sc5(sc5)
+        elif switch == "6":
+            policies.export_policies_sc5(sc5)
+        elif switch == "7":
+            policies.import_policies_sc5(sc5)
+        elif switch == "8":
+            reports.get_reports_sc5(sc5)
+        elif switch == "9":
+            reports.export_reports_sc5(sc5)
+        elif switch == "10":
+            reports.import_reports_sc5(sc5)
+        elif switch == "11":
+            dashboards.get_dashboards_sc5(sc5)
+        elif switch == "12":
+            dashboards.export_dashboards_sc5(sc5)
+        elif switch == "13":
+            dashboards.import_dashboards_sc5(sc5)
 
 
 # ------------------------------------------------------------------------------
@@ -135,6 +200,5 @@ while True:
             print "Exiting..."
             break
 
-logout()
-log.info('Ending sproofofconcept.py')
+connect.logout()
 exit()

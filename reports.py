@@ -29,17 +29,17 @@ def get_reports_sc5(sc5):
     return result
 
 
-def export_reports_sc4():
+def export_reports_sc4(sc4):
     return
 
 
-def export_reports_sc5():
+def export_reports_sc5(sc5):
     return
 
 
-def import_reports_sc4():
+def import_reports_sc4(sc4):
     return
 
 
-def import_reports_sc5():
+def import_reports_sc5(sc5):
     return

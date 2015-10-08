@@ -29,18 +29,18 @@ def get_policies_sc5(sc5):
     return result
 
 
-def export_policies_sc4():
+def export_policies_sc4(sc4):
     return
 
 
-def export_policies_sc5():
+def export_policies_sc5(sc5):
     return
 
 
-def import_policies_sc4():
+def import_policies_sc4(sc4):
     return
 
 
-def import_policies_sc5():
+def import_policies_sc5(sc5):
     return
 
