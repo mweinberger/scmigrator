@@ -205,6 +205,7 @@ while True:
         elif switch == "2":
             sc5, sc5User = connect.login_sc5()
         elif switch == "3":
+            sc4['url'] = url
             sc4_menus(sc4)
         elif switch == "4":
             print "Exiting..."
@@ -220,6 +221,7 @@ while True:
         elif switch == "2":
             sc5, sc5User = connect.login_sc5()
         elif switch == "3":
+            sc4['url'] = url
             sc4_menus(sc4)
         elif switch == "4":
             sc5_menus(sc5)
