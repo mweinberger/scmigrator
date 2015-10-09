@@ -74,6 +74,7 @@ def export_sc4(sc4, itemtype, all=None):
         if sc4Exportid == 'all':
             for v in response[alt]:
                 input = {'id': v['id']}
+                print "Exporting %s %s" % itemtype, v
                 data = connect.sc4_connect(itemtype,
                                            'export',
                                            input,
@@ -87,6 +88,7 @@ def export_sc4(sc4, itemtype, all=None):
             for v in response[alt]:
                 if v['id'] == sc4Exportid:
                     input = {'id': v['id']}
+                    print "Exporting %s %s" % itemtype, v
                     data = connect.sc4_connect(itemtype,
                                                'export',
                                                input,
@@ -117,11 +119,16 @@ def export_sc5(sc5, itemtype, all=None):
         if sc5Exportid == 'all':
             assets = sc5.get('/'+itemtype)
             for v in assets.json().get('response').get('manageable'):
-                sc5Export = sc5.get(itemtype+'/'+v.get('id')+'/export')
+                print "Exporting %s %s" % itemtype, v
+                if itemtype == 'reportDefinition' or itemtype == 'dashboard':
+                    sc5Export = sc5.post(itemtype+'/'+v.get('id')+'/export', json={'exportType': 'full'})
+                else:
+                    sc5Export = sc5.get(itemtype+'/'+v.get('id')+'/export')
                 with open('sc5/'+alt+'/'+v.get('id')+'.xml', 'w') as f:
                     f.write(sc5Export.content)
             return
         else:
+            print "Exporting %s %s" % itemtype, sc5Exportid
             sc5Export = sc5.get(itemtype+'/'+sc5Exportid+'/export')
             with open('sc5/'+alt+'/'+sc5Exportid+'.xml', 'w') as f:
                 f.write(sc5Export.content)
@@ -241,7 +248,7 @@ def get_alt(itemtype):
         alt = 'assets'
     elif itemtype == 'policy':
         alt = 'policies'
-    elif itemtype == 'report':
+    elif itemtype == 'reportDefinition':
         alt = 'reports'
     elif itemtype == 'dashboard':
         alt = 'dashboards'
