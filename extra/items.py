@@ -86,20 +86,15 @@ def export_sc4(sc4, itemtype, all=None):
                 print "Exporting %s %s" % (itemtype, v['id'])
                 if itemtype == 'dashboard':
                     input = {'id': v['id'], 'exportType': 'full'}
-                    data = connect.sc4_connect(itemtype,
-                                               'exportTab',
-                                               input,
-                                               url=url,
-                                               token=token,
-                                               cookie=cookie)
-
-                else:
-                    data = connect.sc4_connect(itemtype,
-                                               'export',
-                                               input,
-                                               url=url,
-                                               token=token,
-                                               cookie=cookie)
+                    action = 'exportTab'
+                elif itemtype == 'policy':
+                    action = 'exportNessusPolicy'
+                data = connect.sc4_connect(itemtype,
+                                           action,
+                                           input,
+                                           url=url,
+                                           token=token,
+                                           cookie=cookie)
                 with open('sc4/'+alt+'/'+v['id']+'.xml', 'w') as f:
                     f.write(data)
             return
@@ -108,22 +103,18 @@ def export_sc4(sc4, itemtype, all=None):
                 if v['id'] == sc4Exportid:
                     input = {'id': v['id']}
                     print "Exporting %s %s" % (itemtype, v['id'])
+                    action = 'export'
                     if itemtype == 'dashboard':
                         input = {'id': v['id'], 'exportType': 'full'}
-                        data = connect.sc4_connect(itemtype,
-                                                   'exportTab',
-                                                   input,
-                                                   url=url,
-                                                   token=token,
-                                                   cookie=cookie)
-
-                    else:
-                        data = connect.sc4_connect(itemtype,
-                                                   'export',
-                                                   input,
-                                                   url=url,
-                                                   token=token,
-                                                   cookie=cookie)
+                        action = 'exportTab'
+                    elif itemtype == 'policy':
+                        action = 'exportNessusPolicy'
+                    data = connect.sc4_connect(itemtype,
+                                               action,
+                                               input,
+                                               url=url,
+                                               token=token,
+                                               cookie=cookie)
                     with open('sc4/'+alt+'/'+v['id']+'.xml', 'w')as f:
                         f.write(data)
             return
@@ -246,11 +237,11 @@ def import_sc5(sc5, itemtype, all=None):
             sc5Import = 'all'
         else:
             sc5Import = raw_input("\nPlease enter the ID and version of the %s you wish to import, "
-                                  "type \"all\" to import all (Example: sc4/1 or sc5/2): ") % itemtype
+                                  "type \"all\" to import all (Example: sc4/1 or sc5/2): " % itemtype)
         print ""
         if sc5Import == 'all':
             files = glob.glob('sc4/'+alt+'/*.xml')
-            files.append(glob.glob('sc5/'+alt+'/*.xml'))
+            files = files + glob.glob('sc5/'+alt+'/*.xml')
             for v in files:
                 print "Importing "+v
                 with open(v, 'rb') as in_file:
@@ -258,10 +249,16 @@ def import_sc5(sc5, itemtype, all=None):
                 files = {'Filedata': (v, file_content)}
                 fupload = sc5.post('file/upload', files=files)
                 name = fupload.json()['response']['filename']
-                sc5.post(itemtype+'/import', json={"filename": name})
+                try:
+                    if itemtype == 'dashboard':
+                        sc5.post(itemtype+'/import', json={'filename': name, 'order': '1'})
+                    else:
+                        sc5.post(itemtype+'/import', json={'filename': name})
+                except Exception, e:
+                    print "\nError: " + str(e)
             return
         else:
-            sc5Import = sc5Import.split('\\')
+            sc5Import = sc5Import.split('/')
             file_name = sc5Import[0]+'/'+alt+'/'+sc5Import[1]+'.xml'
             print "\nImporting "+file_name
             with open(file_name, 'rb') as in_file:
@@ -270,6 +267,7 @@ def import_sc5(sc5, itemtype, all=None):
             fupload = sc5.post('file/upload', files=files)
             name = fupload.json()['response']['filename']
             sc5.post(itemtype+'/import', json={"filename": name})
+            return
     except Exception, e:
         print "\nError: " + str(e)
         return

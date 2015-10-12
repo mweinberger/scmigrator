@@ -33,7 +33,7 @@ def sc4_connect(module, action, input={}, url='', token='', cookie='', filename=
                                      verify=False,
                                      headers=headers,
                                      timeout=3)
-            if str(action) == 'export' or str(action) == 'exportTab':
+            if str(action) == 'export' or str(action) == 'exportTab' or str(action) == 'exportNessusPolicy':
                 return response.content
             if str(response.json()['error_code']) is not "0":
                 print '\n'+response.json()['error_msg']+'Not logged in to SC4'
