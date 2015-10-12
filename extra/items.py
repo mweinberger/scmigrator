@@ -150,7 +150,7 @@ def export_sc5(sc5, itemtype, all=None):
         else:
             print "Exporting %s %s" % (itemtype, sc5Exportid)
             if itemtype == 'reportDefinition' or itemtype == 'dashboard':
-                sc5Export = sc5.post(itemtype+'/'+v.get('id')+'/export', json={'exportType': 'full'})
+                sc5Export = sc5.post(itemtype+'/'+sc5Exportid.get('id')+'/export', json={'exportType': 'full'})
             else:
                 sc5Export = sc5.get(itemtype+'/'+sc5Exportid+'/export')
             with open('sc5/'+alt+'/'+sc5Exportid+'.xml', 'w') as f:
