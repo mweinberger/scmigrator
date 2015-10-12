@@ -155,14 +155,13 @@ sc5 = None
 sc4User = ""
 sc5User = ""
 
-print "\n\nWelcome to the SecurityCenter Asset Migrator \n"\
-      "This program will allow you to import and export assets from SC4 and SC5\n"\
+print "\n\nWelcome to the SecurityCenter Migrator \n"\
+      "This program will allow you to import and export from SC4 and SC5\n"\
       "A few things are of note:\n"\
-      "1. SecurityCenter 5 does not allow you to import two assets with the same name.  "\
+      "1. SecurityCenter often does not allow you to import two items with the same name.  "\
       "If you want to do this anyway change the name in your local .xml file.\n"\
       "2. Selecting \"all\" for either sc4 or sc5 imports will upload all .xml files in your local directory.  "\
-      "It will however stop on failues, you may want to move or remove the files that have already finished importing "\
-      "before continuing the import.\n"\
+      "Not everything is backwards compatible, you may have issues with imports from sc5 to sc4.\n"\
       "3. To export or import between two SC instances of the same version, simply log in to the first one and "\
       "export followed by logging in to the second one and importing."
 print "Please report any bugs or odd behavior to Michael Weinberger (mweinberger@tenable.com)\n"

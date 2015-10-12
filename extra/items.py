@@ -170,6 +170,7 @@ def import_sc4(sc4, itemtype, all=None):
         if not os.path.exists('sc4/'+alt):
             if not os.path.exists('sc5/'+alt):
                 print "There are no %s to import" % itemtype
+        url = sc4['url']
         token = sc4['token']
         cookie = str(sc4['sessionID'])
         if all is True:
@@ -180,7 +181,7 @@ def import_sc4(sc4, itemtype, all=None):
         print ""
         if sc4Import == 'all':
             files = glob.glob('sc4/'+alt+'/*.xml')
-            files.append(glob.glob('sc5/'+alt+'/*.xml'))
+            files = files + glob.glob('sc5/'+alt+'/*.xml')
             for v in files:
                 print "Importing "+v
                 with open(v, 'rb') as in_file:
@@ -192,8 +193,13 @@ def import_sc4(sc4, itemtype, all=None):
                                               cookie=cookie,
                                               filename=v,
                                               filecontent=file_content)
+                action = 'import'
+                if itemtype == 'dashboard':
+                    action = 'importTab'
+                elif itemtype == 'policy':
+                    action = 'importNessusPolicy'
                 connect.sc4_connect(itemtype,
-                                    'import',
+                                    action,
                                     input={'filename': content},
                                     url=url,
                                     token=token,
@@ -212,8 +218,13 @@ def import_sc4(sc4, itemtype, all=None):
                                           cookie=cookie,
                                           filename=file_name,
                                           filecontent=file_content)
+            action = 'import'
+            if itemtype == 'dashboard':
+                action = 'importTab'
+            elif itemtype == 'policy':
+                action = 'importNessusPolicy'
             connect.sc4_connect(itemtype,
-                                'import',
+                                action,
                                 input={'filename': content},
                                 url=url,
                                 token=token,
