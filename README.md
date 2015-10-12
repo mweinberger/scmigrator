@@ -6,6 +6,9 @@ More importantly, you can do these tasks in bulk.
 [Source Code Repository](https://github.com/mweinberger/scmigrator)
 
 # Changelog
+__v0.1.0__
+
+* Export/import working for assets, dashboard tabs, scan policies, and reports.
 
 __v0.0.1__
 
@@ -14,7 +17,7 @@ __v0.0.1__
 
 # How to Install
 
-Download the package and then run:
+Download the whole repo as zip and then run:
 python scmigrator.py
 
 Requires pySecurityCenter 2.1.7 or greater.
