@@ -84,6 +84,7 @@ def export_sc4(sc4, itemtype, all=None):
             for v in response[alt2]:
                 input = {'id': v['id']}
                 print "Exporting %s %s" % (itemtype, v['id'])
+                action = 'export'
                 if itemtype == 'dashboard':
                     input = {'id': v['id'], 'exportType': 'full'}
                     action = 'exportTab'
